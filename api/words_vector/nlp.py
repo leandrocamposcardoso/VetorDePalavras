@@ -45,14 +45,21 @@ class FileNlpPipeline:
 
     def step1_files_to_dicts(self):
         self.files_dicts = [
-            dict(file_name=file, file_ontent=self.files[file].readlines())
+            dict(
+                file_name=self.files[file].name,
+                file_ontent=self.files[file].readlines(),
+            )
             for file in self.files
         ]
 
     def step2_get_files_words(self):
         text = ''
         for file in self.files_dicts:
-            new_string = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            try:
+                new_string = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            except Exception:
+                new_string = file['file_ontent'][0].rstrip('\r\n')
+
             text = text + ' ' + new_string
         self.all_text = text.strip()
 
@@ -70,7 +77,10 @@ class FileNlpPipeline:
 
     def step4_gen_vectors(self):
         for file in self.files_dicts:
-            text = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            try:
+                text = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            except Exception:
+                text = file['file_ontent'][0].rstrip('\r\n')
             tokens = self.nlp.tokenize(text)
             frequency = self.nlp.frequency(tokens, self.vocabulary)
             self.vectors.append(
@@ -79,7 +89,10 @@ class FileNlpPipeline:
 
     def step4_gen_two_grams_vectors(self):
         for file in self.files_dicts:
-            text = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            try:
+                text = file['file_ontent'][0].decode('UTF-8').rstrip('\r\n')
+            except Exception:
+                text = file['file_ontent'][0].rstrip('\r\n')
             tokens = self.nlp.n_grams(2, text)
             frequency = self.nlp.frequency(tokens, self.vocabulary)
             self.vectors.append(

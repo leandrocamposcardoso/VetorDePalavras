@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Vocabulary
+from .serializers import VocabularySerializer
 
-# Create your views here.
+
+class VocabularyView(ModelViewSet):
+    serializer_class = VocabularySerializer
+    queryset = Vocabulary.objects.all()

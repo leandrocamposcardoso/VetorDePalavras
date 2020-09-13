@@ -6,5 +6,5 @@ api_base = settings.URL_BASE
 
 urlpatterns = [
     path(f"{api_base}admin/", admin.site.urls),
-    # path(f'{api_base}words_vector/', include('words_vector.urls')),
+    path(f'{api_base}words_vector/', include('words_vector.urls')),
 ]

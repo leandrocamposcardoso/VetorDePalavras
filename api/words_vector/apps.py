@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class WordsVectorConfig(AppConfig):
+class WordsListConfig(AppConfig):
     name = "words_vector"

@@ -48,4 +48,5 @@ disable=
     duplicate-code,
     consider-using-ternary,
     import-error,
-    line-too-long
+    line-too-long,
+    isinstance-second-argument-not-valid-type

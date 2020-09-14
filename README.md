@@ -170,7 +170,7 @@ Response:
 
     }
 
-#### {host}/file-vocabulary-nostop
+#### {host}/file-vector-nostop
 
 Retorna o vetor das palavras do vocabulario removendo stopwords
 

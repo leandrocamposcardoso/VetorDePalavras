@@ -1,6 +1,13 @@
 # Vetor de Palavras
 Projeto para gerar vetor de palavras em Django + Django Rest Framework para processamento de linguagem natural.  A maior parte do NLP([Natural Language Processing) foi feita utilizando a biblioteca **nltk** do python.
 
+# Porque utilizar a biblioteca **nltk**?
+**nltk** é um conjunto de bibliotecas e programas para processamento simbólico e estatístico da linguagem natural, algumas suas bibliotecas atendem perfeitamente as necessidades do projeto como **stopwords** , **punkt**.
+Para instalar as dependências basta executar no python:
+> import nltk
+> nltk.download(stopwords)
+> nltk.download(punkt)
+
 ## Rodando o projeto
 Após instalar as dependência para rodar o projeto execute os comandos dentro da pasta API
 *Instalar todas as dependências nessesárias do python*

@@ -12,6 +12,9 @@ Gerar o banco de dados
 Rodar o servidor
 > python manage.py runserver
 
+Rodar testes
+> python manage.py test
+
 ## Natural language processing
 
 ### Endpoints
@@ -61,23 +64,21 @@ Type: Multipart Form
 Response:
 
     {
-	    "vocabulary": [
-	    "falar é",
-	    "é fácil",
-	    "fácil mostre",
-	    "mostre me",
-	    "me o",
-	    "o código",
-	    "código é",
-	    "fácil escrever",
-	    "escrever código",
-	    "código difícil",
-	    "difícil é",
-	    "é escrever",
-	    "código que",
-	    "que funcione"
+        "falar é",
+        "é fácil",
+        "fácil mostreme",
+        "mostreme o",
+        "o código",
+        "código é",
+        "fácil escrever",
+        "escrever código",
+        "código difícil",
+        "difícil é",
+        "é escrever",
+        "código que",
+        "que funcione"
     ],
-	    "words": 14
+	    "words": 13
     }
 
 

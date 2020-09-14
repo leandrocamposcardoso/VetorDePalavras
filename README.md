@@ -32,6 +32,8 @@ Rodar testes
 | /file-two-grams-vocabulary|POST|Multipart Form(files)|
 | /file-two-grams-vector|POST|Multipart Form(files)|
 | /file-vectors|POST|Multipart Form(files)|
+| /file-vocabulary-nostop|POST|Multipart Form(files)|
+| /file-vector-nostop|POST|Multipart Form(files)|
 
 
 ### Exemplos de chamadas
@@ -46,16 +48,23 @@ Type: Multipart Form
 
 Response:
 
-    {"vocabulary": [
-    "fácil",
-    "escrever",
-    "código",
-    "difícil",
-    "funcione",
-    "falar",
-    "mostre"],
-    "words": 7
-    }
+    {
+	  "vocabulary": [
+	    "falar",
+	    "é",
+	    "fácil",
+	    "mostre",
+	    "me",
+	    "o",
+	    "código",
+	    "escrever",
+	    "difícil",
+	    "que",
+	    "funcione"
+	  ],
+		  "words": 11
+	  }
+
 
 
 
@@ -90,7 +99,7 @@ Response:
 
 
 #### {host}/words_vector/file-two-grams-vector
-Retorna o vocabulário gerado com as palavras únicas de todos os arquivos
+Retorna o vetor das palavras do vocabulario 2grams
 Data:
 Method: POST
 Type: Multipart Form
@@ -112,7 +121,7 @@ Response:
 	]
 
 #### {host/words_vector/file-vectors
-Retorna o vocabulário gerado com as palavras únicas de todos os arquivos
+Retorna o vetor das palavras do vocabulario
 Data:
 Method: POST
 Type: Multipart Form
@@ -125,13 +134,65 @@ Response:
     [
 	  {
 	    "name": "teste.txt",
-	    "vector": [1,1,1,1,0,0,0]
+	    "vector":  [1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0]
 	  },
 	  {
 	    "name": "teste2.txt",
-	    "vector": [0,1,0,2,2,1,1]
+	    "vector":  [0, 2, 1, 0, 0, 0, 2, 2, 1, 1, 1]
 	  }
 	]
+
+
+#### {host}/file-vocabulary-nostop
+
+Retorna o vocabulário gerado com as palavras únicas de todos os arquivos removendo stopwords
+Data:
+Method: POST
+Type: Multipart Form
+
+    file1 file1.txt
+    file2 file2.txt
+
+
+Response:
+    {
+
+    "vocabulary": [
+	    "falar",
+	    "fácil",
+	    "mostre",
+	    "código",
+	    "escrever",
+	    "difícil",
+	    "funcione"
+    ],
+    "words": 7
+
+    }
+
+#### {host}/file-vocabulary-nostop
+
+Retorna o vetor das palavras do vocabulario removendo stopwords
+
+Data:
+Method: POST
+Type: Multipart Form
+
+    file1 file1.txt
+    file2 file2.txt
+
+Response:
+
+        [
+    	  {
+    	    "name": "teste.txt",
+    	    "vector": [1,1,0,1,0,0,0]
+    	  },
+    	  {
+    	    "name": "teste2.txt",
+    	    "vector": [0,1,0,2,2,1,1]
+    	  }
+    ]
 
 
 # Django Admin Painel

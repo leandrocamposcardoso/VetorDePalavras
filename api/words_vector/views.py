@@ -46,3 +46,29 @@ class FileTwoGramsVectorView(APIView):
             return Response(nlp.vectors)
         except Exception:
             return Response({'error': 'Ocorreu um erro'}, status=500)
+
+
+class FileVocabularyWithoutStopwordsView(APIView):
+    def post(self, request, *args, **kwargs):
+        files_list = request.FILES
+        nlp = NLPPIpeline(
+            files_list, _type='bow', log=True, with_vectors=False, stopwords=True
+        )
+        try:
+            nlp.run()
+            return Response(dict(vocabulary=nlp.vocabulary, words=len(nlp.vocabulary)))
+        except Exception:
+            return Response({'error': 'Ocorreu um erro'}, status=500)
+
+
+class FileVectorWithoutStopwordsView(APIView):
+    def post(self, request, *args, **kwargs):
+        files_list = request.FILES
+        nlp = NLPPIpeline(
+            files_list, _type='bow', log=True, with_vectors=True, stopwords=True
+        )
+        try:
+            nlp.run()
+            return Response(nlp.vectors)
+        except Exception:
+            return Response({'error': 'Ocorreu um erro'}, status=500)

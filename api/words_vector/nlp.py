@@ -7,11 +7,17 @@ from .models import Logs
 
 class NLP:
     def remove_stopwords(self, words):
-        stopwords = set(stwords.words('portuguese') + list(string.punctuation))
+        stopwords = stwords.words('portuguese')
         return [word for word in words if word not in stopwords]
 
+    def remove_final_accentuation(self, words):
+        stopwords = list(string.punctuation)
+        return [word for word in words if word not in stopwords]
+
+    def split_words(self, words):
+        return words.replace('-', ' ')
+
     def tokenize(self, text):
-        text = text.replace('-', ' ')
         return word_tokenize(text.lower())
 
     def n_grams(self, n, text):
@@ -30,7 +36,9 @@ class NLP:
 
 
 class NLPPIpeline:
-    def __init__(self, files, _type='bow', log=True, with_vectors=True):
+    def __init__(
+        self, files, _type='bow', log=True, with_vectors=True, stopwords=False
+    ):
         self.files = files
         self.type = _type
         self.log = log
@@ -40,6 +48,7 @@ class NLPPIpeline:
         self.vectors = []
         self.nlp = NLP()
         self.with_vectors = with_vectors
+        self.stopwords = stopwords
 
     def step1_load_file_to_dict(self):
         self.files_dicts = [
@@ -62,12 +71,18 @@ class NLPPIpeline:
 
     def step3_generate_vocabulary(self):
         if self.type == 'bow':
+            self.all_text = self.nlp.split_words(self.all_text)
             tokens = self.nlp.tokenize(self.all_text)
         else:
             tokens = self.nlp.n_grams(2, self.all_text)
-        self.vocabulary = self.nlp.remove_stopwords(
-            (sorted(set(tokens), key=tokens.index))
-        )
+        if self.stopwords:
+            self.vocabulary = self.nlp.remove_final_accentuation(
+                self.nlp.remove_stopwords((sorted(set(tokens), key=tokens.index)))
+            )
+        else:
+            self.vocabulary = self.nlp.remove_final_accentuation(
+                (sorted(set(tokens), key=tokens.index))
+            )
 
     def step4_generate_vectors(self):
         for file in self.files_dicts:
@@ -77,6 +92,7 @@ class NLPPIpeline:
                 text = file['file_ontent'][0].rstrip('\r\n')
             if self.type == 'bow':
                 tokens = self.nlp.tokenize(text)
+
             else:
                 tokens = self.nlp.n_grams(2, text)
             frequency = self.nlp.frequency(tokens, self.vocabulary)

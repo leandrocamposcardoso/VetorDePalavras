@@ -12,6 +12,8 @@ urlpatterns = router.urls + [
     path('file-vectors', views.FileVectorView.as_view()),
     path('file-two-grams-vocabulary', views.FileTwoGramsVocabularyView.as_view()),
     path('file-two-grams-vector', views.FileTwoGramsVectorView.as_view()),
+    path('file-vocabulary-nostop', views.FileVocabularyWithoutStopwordsView.as_view()),
+    path('file-vector-nostop', views.FileVectorWithoutStopwordsView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

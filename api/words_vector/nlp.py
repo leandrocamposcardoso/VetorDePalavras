@@ -15,11 +15,7 @@ class NLP:
         return word_tokenize(text.lower())
 
     def n_grams(self, n, text):
-        text = (
-            text.replace('-', ' ')
-            .translate(str.maketrans('', '', string.punctuation))
-            .lower()
-        )
+        text = text.translate(str.maketrans('', '', string.punctuation)).lower()
         n_grams = ngrams(text.split(), n)
         return [' '.join(grams) for grams in n_grams]
 

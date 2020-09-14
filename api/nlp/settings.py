@@ -76,23 +76,9 @@ WSGI_APPLICATION = "nlp.wsgi.application"
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "sql_server.pyodbc",
-        "NAME": os.getenv("DATABASE_NAME"),
-        "HOST": os.getenv("DATABASE_DSN"),
-        "PORT": os.getenv("DATABASE_PORT", "1433"),
-        "USER": os.getenv("DATABASE_USER"),
-        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "OPTIONS": {
-            "driver": os.getenv("DRIVERODBC", "ODBC Driver 17 for SQL Server"),
-            "dsn": os.getenv("DATABASE_DSN"),
-            "host_is_server": True,
-            "autocommit": True,
-            "unicode_results": True,
-            "isolation_level": "READ UNCOMMITTED",
-            "connection_timeout": 25,
-            "query_timeout": 25,
-        },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -55,9 +55,8 @@ class PipelineTestCase(TestCase):
         vocabulary = [
             'falar é',
             'é fácil',
-            'fácil mostre',
-            'mostre me',
-            'me o',
+            'fácil mostreme',
+            'mostreme o',
             'o código',
             'código é',
             'fácil escrever',
@@ -95,5 +94,5 @@ class PipelineTestCase(TestCase):
         vectors = self.nlp_pipeline.vectors
         vector1 = vectors[0]['vector']
         vector2 = vectors[1]['vector']
-        self.assertEqual(vector1, [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.assertEqual(vector2, [0, 1, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 1, 1])
+        self.assertEqual(vector1, [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.assertEqual(vector2, [0, 1, 0, 0, 0, 0, 1, 2, 1, 1, 1, 1, 1])

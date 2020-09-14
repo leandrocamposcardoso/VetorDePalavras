@@ -1,19 +1,6 @@
 # Vetor de Palavras
 Projeto para gerar vetor de palavras em Django + Django Rest Framework para processamento de linguagem natural.  A maior parte do NLP([Natural Language Processing) foi feita utilizando a biblioteca **nltk** do python.
 
-#### Dependências do projeto
-Projeto utiliza o banco Microsoft Sql Server, conectado utilizando [msodbc](https://docs.microsoft.com/en-us/sql/connect/odbc/microsoft-odbc-driver-for-sql-server?view=sql-server-ver15) e a dependência do python [django-pyodbc-azure](https://pypi.org/project/django-pyodbc-azure/).
-
-#### Variáveis de ambiente
-    export SECRET_KEY="teste"
-    export DEBUG=True
-    export API_HOST="*"
-    export DATABASE_NAME="NOME_BANCO"
-    export DATABASE_DSN="localhost"
-    export DATABASE_PORT="1433"
-    export DATABASE_USER="sa"
-    export DATABASE_PASSWORD="SENHA_BANCO"
-
 ## Rodando o projeto
 Após instalar as dependência para rodar o projeto execute os comandos dentro da pasta API
 *Instalar todas as dependências nessesárias do python*
